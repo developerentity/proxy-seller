@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useEffect } from 'react';
 import { getUsers } from '../../app/slices/usersSlice';
+import { Button, UserItem, UsersContainer } from './styles';
+import { Container } from '../../styles/Container';
 
 
 const UsersComponent = () => {
@@ -14,20 +15,18 @@ const UsersComponent = () => {
     }, [dispatch])
 
     return (
-        <div>
-            <h1>Users</h1>
-            {users.map(user => (
-                <div key={user.id}>
-                    <p>{user.username}</p>
-                    <button>
-                        <Link to={`/users/${user.id}/albums`}>Albums</Link>
-                    </button>
-                    <button>
-                        <Link to={`/users/${user.id}/posts`}>Posts</Link>
-                    </button>
-                </div>
-            ))}
-        </div>
+        <UsersContainer>
+            <Container>
+                <h1>Users</h1>
+                {users.map(user => (
+                    <UserItem key={user.id}>
+                        <h2>{user.username}</h2>
+                        <Button to={`/users/${user.id}/albums`}>Albums</Button>
+                        <Button to={`/users/${user.id}/posts`}>Posts</Button>
+                    </UserItem>
+                ))}
+            </Container>
+        </UsersContainer>
     )
 }
 
