@@ -22,12 +22,14 @@ const UserPostsComponent = () => {
             <Header
                 shouldBackButtonBeShown
                 title={`User's posts with ID: ${userId}`} />
-            {posts.length && posts.map(post => (
-                <PostItem key={post.id}>
-                    <h2>{post.title}</h2>
-                    <p>{post.body}</p>
-                </PostItem>
-            ))}
+            {posts.length
+                ? posts.map(post => (
+                    <PostItem key={post.id}>
+                        <h2>{post.title}</h2>
+                        <p>{post.body}</p>
+                    </PostItem>
+                ))
+                : <div />}
         </Container>
     )
 }

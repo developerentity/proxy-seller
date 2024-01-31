@@ -22,11 +22,13 @@ const UserAlbumsComponent = () => {
             <Header
                 shouldBackButtonBeShown
                 title={`User's albums with ID ${userId}`} />
-            {albums.length && albums.map(album => (
-                <AlbumItem key={album.id}>
-                    {album.title}
-                </AlbumItem>
-            ))}
+            {albums.length
+                ? albums.map(album => (
+                    <AlbumItem key={album.id}>
+                        {album.title}
+                    </AlbumItem>
+                ))
+                : <div />}
         </Container>
     )
 }

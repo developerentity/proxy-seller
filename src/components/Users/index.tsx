@@ -35,13 +35,15 @@ const UsersComponent = () => {
                     placeholder="Search..."
                 />
             </div>
-            {filteredItems.length && filteredItems.map(user => (
-                <UserItem key={user.id}>
-                    <h2>{user.username}</h2>
-                    <Button to={`/users/${user.id}/albums`}>Albums</Button>
-                    <Button to={`/users/${user.id}/posts`}>Posts</Button>
-                </UserItem>
-            ))}
+            {filteredItems.length
+                ? filteredItems.map(user => (
+                    <UserItem key={user.id}>
+                        <h2>{user.username}</h2>
+                        <Button to={`/users/${user.id}/albums`}>Albums</Button>
+                        <Button to={`/users/${user.id}/posts`}>Posts</Button>
+                    </UserItem>
+                ))
+                : <div />}
         </Container>
     )
 };
