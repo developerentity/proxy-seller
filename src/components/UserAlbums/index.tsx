@@ -16,7 +16,7 @@ const UserAlbumsComponent = () => {
 
     return (
         <div>
-            <h2>User's albums with ID {userId}</h2>;
+            <h2>User's albums with ID {userId}</h2>
             {albums.map(post => (
                 <div key={post.id}>
                     <p>{post.title}</p>
