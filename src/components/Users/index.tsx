@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getUsers } from '../../app/slices/usersSlice';
 import { Button, SearchInput, SortButton, UserItem } from './styles';
 import { Container } from '../../styles/Container';
@@ -35,7 +35,7 @@ const UsersComponent = () => {
                     placeholder="Search..."
                 />
             </div>
-            {filteredItems.map(user => (
+            {filteredItems.length && filteredItems.map(user => (
                 <UserItem key={user.id}>
                     <h2>{user.username}</h2>
                     <Button to={`/users/${user.id}/albums`}>Albums</Button>

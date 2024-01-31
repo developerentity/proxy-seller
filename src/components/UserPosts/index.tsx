@@ -10,7 +10,6 @@ import Header from '../Header';
 const UserPostsComponent = () => {
 
     let { userId } = useParams();
-
     const dispatch = useAppDispatch()
     const { posts } = useAppSelector(store => store.postsSlice)
 
@@ -23,7 +22,7 @@ const UserPostsComponent = () => {
             <Header
                 shouldBackButtonBeShown
                 title={`User's posts with ID: ${userId}`} />
-            {posts.map(post => (
+            {posts.length && posts.map(post => (
                 <PostItem key={post.id}>
                     <h2>{post.title}</h2>
                     <p>{post.body}</p>

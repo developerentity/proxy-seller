@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { BackButton, HeaderContainer, Title } from "./styles";
 
-const Header: React.FC<HeaderProps> = ({ title, shouldBackButtonBeShown }) => {
+const Header = ({ title, shouldBackButtonBeShown }: HeaderProps) => {
     const navigate = useNavigate();
 
     return (
