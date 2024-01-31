@@ -36,7 +36,6 @@ export interface IPost {
 }
 
 export interface IUsersInitialState {
-  sortBy: "asc" | "desc" | null;
   users: Array<IUser>;
 }
 

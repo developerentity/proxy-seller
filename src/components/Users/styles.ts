@@ -22,3 +22,23 @@ export const Button = styled(Link)`
     background: #0056b3;
   }
 `;
+
+export const SearchInput = styled.input`
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+export const SortButton = styled.button`
+  padding: 5px 10px;
+  margin-right: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
