@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { AlbumItem } from './styles';
 import { Container } from '../../styles/Container';
 import Header from '../Header';
-
+import { capitalizeFirstLetter, addPeriodAtEnd } from '../../utils/textFormatter';
 
 const UserAlbumsComponent = () => {
 
@@ -25,7 +25,7 @@ const UserAlbumsComponent = () => {
             {albums.length
                 ? albums.map(album => (
                     <AlbumItem key={album.id}>
-                        {album.title}
+                        {addPeriodAtEnd(capitalizeFirstLetter(album.title))}
                     </AlbumItem>
                 ))
                 : <div />}

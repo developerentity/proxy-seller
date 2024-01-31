@@ -5,6 +5,7 @@ import { getPostForCertainUserById } from '../../app/slices/postsSlice';
 import { PostItem } from './styles';
 import { Container } from '../../styles/Container';
 import Header from '../Header';
+import { addPeriodAtEnd, capitalizeFirstLetter, } from '../../utils/textFormatter';
 
 
 const UserPostsComponent = () => {
@@ -25,8 +26,8 @@ const UserPostsComponent = () => {
             {posts.length
                 ? posts.map(post => (
                     <PostItem key={post.id}>
-                        <h2>{post.title}</h2>
-                        <p>{post.body}</p>
+                        <h2>{addPeriodAtEnd(capitalizeFirstLetter(post.title))}</h2>
+                        <p>{addPeriodAtEnd(capitalizeFirstLetter(post.body))}</p>
                     </PostItem>
                 ))
                 : <div />}
