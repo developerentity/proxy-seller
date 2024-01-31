@@ -33,7 +33,7 @@ type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 
-export const getAlbumsForCertainUserById = (userId: number): AppThunk<void> => {
+export const getAlbumsForCertainUserById = (userId: string): AppThunk<void> => {
   return async (dispatch, getState) => {
     try {
       dispatch(setLoading(true));

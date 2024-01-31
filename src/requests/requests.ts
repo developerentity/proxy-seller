@@ -6,8 +6,10 @@ const baseUrl = "https://jsonplaceholder.typicode.com";
 export const fetchAllUsers = async (): Promise<Array<IUser>> =>
   getDataByUrl(`${baseUrl}/users`);
 
-export const fetchAlbumsForCertainUserById = async (userId: number): Promise<Array<IAlbum>> =>
-  getDataByUrl(`${baseUrl}/users/${userId}/albums/`);
+export const fetchAlbumsForCertainUserById = async (
+  userId: string
+): Promise<Array<IAlbum>> => getDataByUrl(`${baseUrl}/users/${userId}/albums/`);
 
-export const fetchPostsForCertainUserById = async (userId: number): Promise<Array<IPost>> =>
-  getDataByUrl(`${baseUrl}/users/${userId}/posts`);
+export const fetchPostsForCertainUserById = async (
+  userId: string
+): Promise<Array<IPost>> => getDataByUrl(`${baseUrl}/users/${userId}/posts`);
