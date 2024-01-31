@@ -6,6 +6,7 @@ import { PostItem } from './styles';
 import { Container } from '../../styles/Container';
 import Header from '../Header';
 import { addPeriodAtEnd, capitalizeFirstLetter, } from '../../utils/textFormatter';
+import { defineUserName } from '../../utils/defineUserName';
 
 
 const UserPostsComponent = () => {
@@ -13,6 +14,9 @@ const UserPostsComponent = () => {
     let { userId } = useParams();
     const dispatch = useAppDispatch()
     const { posts } = useAppSelector(store => store.postsSlice)
+    const { users } = useAppSelector(store => store.userSlice)
+
+    const username = userId && users.length && defineUserName(users, userId)
 
     useEffect(() => {
         userId && dispatch(getPostForCertainUserById(userId))
@@ -22,7 +26,7 @@ const UserPostsComponent = () => {
         <Container>
             <Header
                 shouldBackButtonBeShown
-                title={`User's posts with ID: ${userId}`} />
+                title={`${username}'s posts`} />
             {posts.length
                 ? posts.map(post => (
                     <PostItem key={post.id}>

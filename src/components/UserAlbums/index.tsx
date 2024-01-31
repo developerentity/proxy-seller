@@ -6,12 +6,16 @@ import { AlbumItem } from './styles';
 import { Container } from '../../styles/Container';
 import Header from '../Header';
 import { capitalizeFirstLetter, addPeriodAtEnd } from '../../utils/textFormatter';
+import { defineUserName } from '../../utils/defineUserName';
 
 const UserAlbumsComponent = () => {
 
     let { userId } = useParams();
     const dispatch = useAppDispatch()
     const { albums } = useAppSelector(store => store.albumSlice)
+    const { users } = useAppSelector(store => store.userSlice)
+
+    const username = userId && users.length && defineUserName(users, userId)
 
     useEffect(() => {
         userId && dispatch(getAlbumsForCertainUserById(userId))
@@ -21,7 +25,7 @@ const UserAlbumsComponent = () => {
         <Container>
             <Header
                 shouldBackButtonBeShown
-                title={`User's albums with ID ${userId}`} />
+                title={`${username}'s albums`} />
             {albums.length
                 ? albums.map(album => (
                     <AlbumItem key={album.id}>
