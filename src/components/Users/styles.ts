@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const UsersContainer = styled.div`
-  padding: 20px;
-  background: #f0f0f0;
-  min-height: 100vh;
-`;
-
 export const UserItem = styled.div`
   margin: 10px 0;
   padding: 10px;

@@ -2,8 +2,9 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useEffect } from 'react';
 import { getPostForCertainUserById } from '../../app/slices/postsSlice';
-import { PostItem, PostsContainer } from './styles';
+import { PostItem } from './styles';
 import { Container } from '../../styles/Container';
+import Header from '../Header';
 
 
 const UserPostsComponent = () => {
@@ -18,17 +19,17 @@ const UserPostsComponent = () => {
     }, [dispatch, userId])
 
     return (
-        <PostsContainer>
-            <Container>
-                <h1>User's posts with ID: {userId}</h1>
-                {posts.map(post => (
-                    <PostItem key={post.id}>
-                        <h2>{post.title}</h2>
-                        <p>{post.body}</p>
-                    </PostItem>
-                ))}
-            </Container>
-        </PostsContainer>
+        <Container>
+            <Header
+                shouldBackButtonBeShown
+                title={`User's posts with ID: ${userId}`} />
+            {posts.map(post => (
+                <PostItem key={post.id}>
+                    <h2>{post.title}</h2>
+                    <p>{post.body}</p>
+                </PostItem>
+            ))}
+        </Container>
     )
 }
 

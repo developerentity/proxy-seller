@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-export const AlbumsContainer = styled.div`
-  padding: 20px;
-  background: #f9f9f9;
-  min-height: 100vh;
-`;
+export const AlbumsContainer = styled.div``;
 
 export const AlbumItem = styled.div`
   margin-bottom: 15px;

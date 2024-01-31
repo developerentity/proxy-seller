@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-export const PostsContainer = styled.div`
-  padding: 20px;
-  background: #f4f4f4;
-  min-height: 100vh;
-`;
-
 export const PostItem = styled.article`
   margin-bottom: 20px;
   padding: 15px;

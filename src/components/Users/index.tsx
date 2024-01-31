@@ -1,8 +1,9 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useEffect } from 'react';
 import { getUsers } from '../../app/slices/usersSlice';
-import { Button, UserItem, UsersContainer } from './styles';
+import { Button, UserItem } from './styles';
 import { Container } from '../../styles/Container';
+import Header from '../Header';
 
 
 const UsersComponent = () => {
@@ -15,18 +16,16 @@ const UsersComponent = () => {
     }, [dispatch])
 
     return (
-        <UsersContainer>
-            <Container>
-                <h1>Users</h1>
-                {users.map(user => (
-                    <UserItem key={user.id}>
-                        <h2>{user.username}</h2>
-                        <Button to={`/users/${user.id}/albums`}>Albums</Button>
-                        <Button to={`/users/${user.id}/posts`}>Posts</Button>
-                    </UserItem>
-                ))}
-            </Container>
-        </UsersContainer>
+        <Container>
+            <Header title='Users' />
+            {users.map(user => (
+                <UserItem key={user.id}>
+                    <h2>{user.username}</h2>
+                    <Button to={`/users/${user.id}/albums`}>Albums</Button>
+                    <Button to={`/users/${user.id}/posts`}>Posts</Button>
+                </UserItem>
+            ))}
+        </Container>
     )
 }
 

@@ -2,8 +2,9 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getAlbumsForCertainUserById } from '../../app/slices/albumsSlice';
 import { useEffect } from 'react';
-import { AlbumItem, AlbumsContainer } from './stylex';
+import { AlbumItem } from './stylex';
 import { Container } from '../../styles/Container';
+import Header from '../Header';
 
 
 const UserAlbumsComponent = () => {
@@ -17,16 +18,16 @@ const UserAlbumsComponent = () => {
     }, [dispatch, userId])
 
     return (
-        <AlbumsContainer>
-            <Container>
-                <h1>User's albums with ID {userId}</h1>
-                {albums.map(album => (
-                    <AlbumItem key={album.id}>
-                        {album.title}
-                    </AlbumItem>
-                ))}
-            </Container>
-        </AlbumsContainer>
+        <Container>
+            <Header
+                shouldBackButtonBeShown
+                title={`User's albums with ID ${userId}`} />
+            {albums.map(album => (
+                <AlbumItem key={album.id}>
+                    {album.title}
+                </AlbumItem>
+            ))}
+        </Container>
     )
 }
 
