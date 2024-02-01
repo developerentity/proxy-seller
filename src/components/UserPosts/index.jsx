@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useEffect } from 'react';
 import { getPostForCertainUserById } from '../../app/slices/postsSlice';
 import { PostItem } from './styles';
@@ -9,15 +8,16 @@ import { addPeriodAtEnd, capitalizeFirstLetter, } from '../../utils/textFormatte
 import { defineUserName } from '../../utils/defineUserName';
 import { getUsers } from '../../app/slices/usersSlice';
 import Loading from '../Loading';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const UserPostsComponent = () => {
 
     let { userId } = useParams();
-    const dispatch = useAppDispatch()
-    const { appLoading } = useAppSelector(store => store.loadingSlice);
-    const { posts } = useAppSelector(store => store.postsSlice)
-    const { users } = useAppSelector(store => store.userSlice)
+    const dispatch = useDispatch()
+    const { appLoading } = useSelector(store => store.loadingSlice);
+    const { posts } = useSelector(store => store.postsSlice)
+    const { users } = useSelector(store => store.userSlice)
 
     const username = userId && users.length && defineUserName(users, userId)
 

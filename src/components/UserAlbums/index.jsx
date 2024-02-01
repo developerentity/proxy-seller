@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getAlbumsForCertainUserById } from '../../app/slices/albumsSlice';
 import { useEffect } from 'react';
 import { AlbumItem } from './styles';
@@ -9,14 +8,15 @@ import { capitalizeFirstLetter, addPeriodAtEnd } from '../../utils/textFormatter
 import { defineUserName } from '../../utils/defineUserName';
 import { getUsers } from '../../app/slices/usersSlice';
 import Loading from '../Loading';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UserAlbumsComponent = () => {
 
     let { userId } = useParams();
-    const dispatch = useAppDispatch()
-    const { appLoading } = useAppSelector(store => store.loadingSlice);
-    const { albums } = useAppSelector(store => store.albumSlice)
-    const { users } = useAppSelector(store => store.userSlice)
+    const dispatch = useDispatch()
+    const { appLoading } = useSelector(store => store.loadingSlice);
+    const { albums } = useSelector(store => store.albumSlice)
+    const { users } = useSelector(store => store.userSlice)
 
     const username = userId && users.length && defineUserName(users, userId)
 

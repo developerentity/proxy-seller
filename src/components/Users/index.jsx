@@ -1,4 +1,3 @@
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useEffect } from 'react';
 import { getUsers } from '../../app/slices/usersSlice';
 import { Button, NoUsersFound, SearchInput, SortButton, UserItem } from './styles';
@@ -7,13 +6,14 @@ import Header from '../Header';
 import { useSort } from '../../hooks/useSort';
 import { useFilter } from '../../hooks/useFilter';
 import Loading from '../Loading';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const UsersComponent = () => {
 
-    const dispatch = useAppDispatch();
-    const { appLoading } = useAppSelector(store => store.loadingSlice);
-    const { users } = useAppSelector(store => store.userSlice);
+    const dispatch = useDispatch();
+    const { appLoading } = useSelector(store => store.loadingSlice);
+    const { users } = useSelector(store => store.userSlice);
 
     const { sortedItems, sortOrder, toggleSortOrder } = useSort(users);
     const { filteredItems, searchTerm, handleSearchChange } = useFilter(sortedItems);
