@@ -8,12 +8,14 @@ import Header from '../Header';
 import { addPeriodAtEnd, capitalizeFirstLetter, } from '../../utils/textFormatter';
 import { defineUserName } from '../../utils/defineUserName';
 import { getUsers } from '../../app/slices/usersSlice';
+import Loading from '../Loading';
 
 
 const UserPostsComponent = () => {
 
     let { userId } = useParams();
     const dispatch = useAppDispatch()
+    const { appLoading } = useAppSelector(store => store.loadingSlice);
     const { posts } = useAppSelector(store => store.postsSlice)
     const { users } = useAppSelector(store => store.userSlice)
 
@@ -26,6 +28,10 @@ const UserPostsComponent = () => {
     useEffect(() => {
         !users.length && dispatch(getUsers())
     }, [dispatch]);
+
+    if (appLoading) {
+        return <Loading />;
+    }
 
     return (
         <Container>

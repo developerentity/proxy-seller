@@ -8,11 +8,13 @@ import Header from '../Header';
 import { capitalizeFirstLetter, addPeriodAtEnd } from '../../utils/textFormatter';
 import { defineUserName } from '../../utils/defineUserName';
 import { getUsers } from '../../app/slices/usersSlice';
+import Loading from '../Loading';
 
 const UserAlbumsComponent = () => {
 
     let { userId } = useParams();
     const dispatch = useAppDispatch()
+    const { appLoading } = useAppSelector(store => store.loadingSlice);
     const { albums } = useAppSelector(store => store.albumSlice)
     const { users } = useAppSelector(store => store.userSlice)
 
@@ -26,6 +28,10 @@ const UserAlbumsComponent = () => {
     useEffect(() => {
         !users.length && dispatch(getUsers())
     }, [dispatch]);
+
+    if (appLoading) {
+        return <Loading />;
+    }
 
     return (
         <Container>

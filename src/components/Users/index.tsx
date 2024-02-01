@@ -6,11 +6,13 @@ import { Container } from '../../styles/Container';
 import Header from '../Header';
 import { useSort } from '../../hooks/useSort';
 import { useFilter } from '../../hooks/useFilter';
+import Loading from '../Loading';
 
 
 const UsersComponent = () => {
 
     const dispatch = useAppDispatch();
+    const { appLoading } = useAppSelector(store => store.loadingSlice);
     const { users } = useAppSelector(store => store.userSlice);
 
     const { sortedItems, sortOrder, toggleSortOrder } = useSort(users);
@@ -20,6 +22,10 @@ const UsersComponent = () => {
     useEffect(() => {
         !users.length && dispatch(getUsers())
     }, [dispatch]);
+
+    if (appLoading) {
+        return <Loading />;
+    }
 
     return (
         <Container>
