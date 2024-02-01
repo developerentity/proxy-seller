@@ -7,6 +7,7 @@ import { Container } from '../../styles/Container';
 import Header from '../Header';
 import { addPeriodAtEnd, capitalizeFirstLetter, } from '../../utils/textFormatter';
 import { defineUserName } from '../../utils/defineUserName';
+import { getUsers } from '../../app/slices/usersSlice';
 
 
 const UserPostsComponent = () => {
@@ -21,6 +22,10 @@ const UserPostsComponent = () => {
     useEffect(() => {
         userId && dispatch(getPostForCertainUserById(userId))
     }, [dispatch, userId])
+
+    useEffect(() => {
+        !users.length && dispatch(getUsers())
+    }, [dispatch]);
 
     return (
         <Container>

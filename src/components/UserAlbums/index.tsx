@@ -7,6 +7,7 @@ import { Container } from '../../styles/Container';
 import Header from '../Header';
 import { capitalizeFirstLetter, addPeriodAtEnd } from '../../utils/textFormatter';
 import { defineUserName } from '../../utils/defineUserName';
+import { getUsers } from '../../app/slices/usersSlice';
 
 const UserAlbumsComponent = () => {
 
@@ -20,6 +21,11 @@ const UserAlbumsComponent = () => {
     useEffect(() => {
         userId && dispatch(getAlbumsForCertainUserById(userId))
     }, [dispatch, userId])
+
+
+    useEffect(() => {
+        !users.length && dispatch(getUsers())
+    }, [dispatch]);
 
     return (
         <Container>

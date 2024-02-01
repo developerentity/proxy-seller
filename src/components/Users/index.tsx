@@ -18,7 +18,7 @@ const UsersComponent = () => {
 
 
     useEffect(() => {
-        dispatch(getUsers())
+        !users.length && dispatch(getUsers())
     }, [dispatch]);
 
     return (
