@@ -21,7 +21,7 @@ const UsersComponent = () => {
 
     useEffect(() => {
         !users.length && dispatch(getUsers())
-    }, [dispatch]);
+    }, [dispatch, users]);
 
     if (appLoading) {
         return <Loading />;
