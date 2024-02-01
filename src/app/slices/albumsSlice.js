@@ -1,16 +1,9 @@
-import {
-  Action,
-  createSlice,
-  PayloadAction,
-  ThunkAction,
-} from "@reduxjs/toolkit";
-import { IAlbum, IAlbumsInitialState } from "../../interfaces/interfaces";
-import { RootState } from "../store";
+import { createSlice } from "@reduxjs/toolkit";
 import { setRequestError } from "./errorsSlice";
 import { setLoading } from "./loadingSlice";
 import { fetchAlbumsForCertainUserById } from "../../requests/requests";
 
-const initialState: IAlbumsInitialState = {
+const initialState = {
   albums: [],
 };
 
@@ -18,7 +11,7 @@ const albumsSlice = createSlice({
   name: "albumsSlice",
   initialState,
   reducers: {
-    setAlbums(state, action: PayloadAction<Array<IAlbum>>) {
+    setAlbums(state, action) {
       state.albums = [...action.payload];
     },
   },
@@ -26,14 +19,7 @@ const albumsSlice = createSlice({
 
 const { setAlbums } = albumsSlice.actions;
 
-type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
-
-export const getAlbumsForCertainUserById = (userId: string): AppThunk<void> => {
+export const getAlbumsForCertainUserById = (userId) => {
   return async (dispatch, getState) => {
     try {
       dispatch(setLoading(true));

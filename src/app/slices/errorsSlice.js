@@ -1,8 +1,7 @@
-import { Action, createSlice, ThunkAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import { createSlice } from "@reduxjs/toolkit";
 import { enqueueSnackbar } from "notistack";
 
-const initialState: any = {
+const initialState = {
   messages: [],
 };
 
@@ -18,14 +17,7 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
-
-export const setRequestError = (err: any): AppThunk<void> => {
+export const setRequestError = (err) => {
   return (dispatch, getState) => {
     if (err.data) {
       const message = Object.values(err.data).join("\n");

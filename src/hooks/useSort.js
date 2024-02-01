@@ -1,10 +1,7 @@
 import { useMemo, useState } from "react";
-import { IUser } from "../interfaces/interfaces";
 
-type SortOrder = "asc" | "desc" | null;
-
-export const useSort = (items: Array<IUser>) => {
-  const [sortOrder, setSortOrder] = useState<SortOrder>(null);
+export const useSort = (items) => {
+  const [sortOrder, setSortOrder] = useState(null);
 
   const sortedItems = useMemo(() => {
     if (!sortOrder) return items;

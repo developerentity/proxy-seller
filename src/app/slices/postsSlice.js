@@ -1,16 +1,9 @@
-import {
-  Action,
-  createSlice,
-  PayloadAction,
-  ThunkAction,
-} from "@reduxjs/toolkit";
-import { IPost, IPostsInitialState } from "../../interfaces/interfaces";
-import { RootState } from "../store";
+import { createSlice } from "@reduxjs/toolkit";
 import { setRequestError } from "./errorsSlice";
 import { setLoading } from "./loadingSlice";
 import { fetchPostsForCertainUserById } from "../../requests/requests";
 
-const initialState: IPostsInitialState = {
+const initialState = {
   posts: [],
 };
 
@@ -18,7 +11,7 @@ const postsSlice = createSlice({
   name: "postsSlice",
   initialState,
   reducers: {
-    setPosts(state, action: PayloadAction<Array<IPost>>) {
+    setPosts(state, action) {
       state.posts = [...action.payload];
     },
   },
@@ -26,14 +19,7 @@ const postsSlice = createSlice({
 
 const { setPosts } = postsSlice.actions;
 
-type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
-
-export const getPostForCertainUserById = (userId: string): AppThunk<void> => {
+export const getPostForCertainUserById = (userId) => {
   return async (dispatch, getState) => {
     try {
       dispatch(setLoading(true));

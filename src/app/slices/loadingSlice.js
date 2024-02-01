@@ -1,10 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-type TInitialState = {
-  appLoading: boolean;
-};
-
-const initialState: TInitialState = {
+const initialState = {
   appLoading: false,
 };
 
@@ -12,7 +8,7 @@ const slice = createSlice({
   name: "loadingSlice",
   initialState,
   reducers: {
-    setLoading(state, action: PayloadAction<boolean>) {
+    setLoading(state, action) {
       state.appLoading = action.payload;
     },
   },

@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
-import { IUser } from "../interfaces/interfaces";
 
-export const useFilter = (items: Array<IUser>) => {
+export const useFilter = (items) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredItems = useMemo(() => {
@@ -10,7 +9,7 @@ export const useFilter = (items: Array<IUser>) => {
     );
   }, [items, searchTerm]);
 
-  const handleSearchChange = (newSearchTerm: string) => {
+  const handleSearchChange = (newSearchTerm) => {
     setSearchTerm(newSearchTerm);
   };
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../app/store";
 import { setRequestError } from "../app/slices/errorsSlice";
 
-export const getDataByUrl = async (url: string, params?: object) => {
+export const getDataByUrl = async (url, params) => {
   try {
     const reqParams = params ? { params } : {};
     const response = await axios.get(url, reqParams);
