@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useEffect } from 'react';
 import { getUsers } from '../../app/slices/usersSlice';
-import { Button, SearchInput, SortButton, UserItem } from './styles';
+import { Button, NoUsersFound, SearchInput, SortButton, UserItem } from './styles';
 import { Container } from '../../styles/Container';
 import Header from '../Header';
 import { useSort } from '../../hooks/useSort';
@@ -49,7 +49,7 @@ const UsersComponent = () => {
                         <Button to={`/users/${user.id}/posts`}>Posts</Button>
                     </UserItem>
                 ))
-                : <div />}
+                : <NoUsersFound>No users found</NoUsersFound>}
         </Container>
     )
 };

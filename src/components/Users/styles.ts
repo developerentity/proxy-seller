@@ -42,3 +42,12 @@ export const SortButton = styled.button`
     background-color: #0056b3;
   }
 `;
+
+export const NoUsersFound = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  font-size: 2rem;
+  color: #8c979a;
+`;
