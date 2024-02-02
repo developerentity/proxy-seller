@@ -8,7 +8,7 @@ const Header = ({ title, shouldBackButtonBeShown }) => {
     return (
         <HeaderContainer>
             {shouldBackButtonBeShown ? (
-                <BackButton onClick={() => navigate('/users')}>Back</BackButton>
+                <BackButton to="/users">Back</BackButton>
             ) : <div />}
             <Title>{title}</Title>
             <div />

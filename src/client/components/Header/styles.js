@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
@@ -17,7 +18,7 @@ export const Title = styled.h1`
   color: #333;
 `;
 
-export const BackButton = styled.button`
+export const BackButton = styled(Link)`
   padding: 5px 10px;
   font-size: 1rem;
   color: #fff;
