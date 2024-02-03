@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "../redux/store";
+import store from "../redux/configureStore";
 import { setRequestError } from "../redux/slices/errorsSlice";
 
 export const getDataByUrl = async (url, params) => {

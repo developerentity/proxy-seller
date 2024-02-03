@@ -1,72 +1,97 @@
-import express from "express";
-import React from "react";
-import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
-import store from "../client/redux/store";
-import { getUsers } from "../client/redux/slices/usersSlice";
-import { Provider } from "react-redux";
-import { getPostForCertainUserById } from "../client/redux/slices/postsSlice";
-import { getAlbumsForCertainUserById } from "../client/redux/slices/albumsSlice";
-import Routes from "../client/Routes";
+// import express from "express";
+// import React from "react";
+// import { renderToString, renderToPipeableStream } from "react-dom/server";
+// import { StaticRouter } from "react-router-dom/server";
+// import store from "../client/redux/configureStore";
+// import { getUsers } from "../client/redux/slices/usersSlice";
+// import { Provider } from "react-redux";
+// import { getPostForCertainUserById } from "../client/redux/slices/postsSlice";
+// import { getAlbumsForCertainUserById } from "../client/redux/slices/albumsSlice";
+// import Routes from "../client/Routes";
+// import path from "path";
 
-const app = express();
+// const app = express();
 
-const render = (req, res, store) => {
-  const preloadedState = store.getState();
+// app.get("/users", async (req, res) => {
+//   await store.dispatch(getUsers());
 
-  const content = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={req.url} context={{}}>
-        <Routes />
-      </StaticRouter>
-    </Provider>
-  );
+//   const entryPoint = ["/main.js"];
 
-  res.send(`
-    <html>
-      <head>
-        <title>SSR React App</title>
-      </head>
-      <body>
-        <div id='root'>${content}</div>
-        <script>
-          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-            /</g,
-            "\u003c"
-          )}
-        </script>
-        <script src='bundle.js'></script>
-      </body>
-    </html>
-  `);
-};
+//   const { pipe, abort: _abort } = renderToPipeableStream(
+//     <StaticRouter location={req.url}>
+//       <Routes />
+//     </StaticRouter>,
+//     {
+//       bootstrapScripts: entryPoint,
+//       onShellReady() {
+//         res.statusCode = 200;
+//         res.setHeader("Content-type", "text/html");
+//         pipe(res);
+//       },
+//       onShellError() {
+//         res.statusCode = 500;
+//         res.send("<!doctype html><p>Loading...</p>");
+//       },
+//     }
+//   );
+// });
 
-app.get("/users", async (req, res) => {
-  await store.dispatch(getUsers());
+// const render = (req, res, store) => {
+//   const preloadedState = store.getState();
 
-  render(req, res, store);
-});
+//   const content = renderToString(
+//     <Provider store={store}>
+//       <StaticRouter location={req.url} context={{}}>
+//         <Routes />
+//       </StaticRouter>
+//     </Provider>
+//   );
 
-app.get("/users/:userId/*", async (req, res) => {
-  const userId = req.params.userId;
-  const path = req.params[0];
+//   res.send(`
+//     <html>
+//       <head>
+//         <title>SSR React App</title>
+//       </head>
+//       <body>
+//         <div id='root'>${content}</div>
+//         <script>
+//           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+//             /</g,
+//             "\u003c"
+//           )}
+//         </script>
+//         <script src='bundle.js'></script>
+//       </body>
+//     </html>
+//   `);
+// };
 
-  switch (path) {
-    case "albums":
-      await store.dispatch(getAlbumsForCertainUserById(userId));
-      break;
+// // app.get("/users", async (req, res) => {
+// //   await store.dispatch(getUsers());
 
-    case "posts":
-      await store.dispatch(getPostForCertainUserById(userId));
-      break;
+// //   render(req, res, store);
+// // });
 
-    default:
-      break;
-  }
+// // app.get("/users/:userId/*", async (req, res) => {
+// //   const userId = req.params.userId;
+// //   const path = req.params[0];
 
-  render(req, res, store);
-});
+// //   switch (path) {
+// //     case "albums":
+// //       await store.dispatch(getAlbumsForCertainUserById(userId));
+// //       break;
 
-app.listen(3002, () => {
-  console.log("App is running on http://localhost:3002");
-});
+// //     case "posts":
+// //       await store.dispatch(getPostForCertainUserById(userId));
+// //       break;
+
+// //     default:
+// //       break;
+// //   }
+
+// //   render(req, res, store);
+// // });
+
+// app.listen(3002, () => {
+//   console.log("App is running on http://localhost:3002");
+// });

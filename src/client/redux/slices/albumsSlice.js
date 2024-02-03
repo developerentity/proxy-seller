@@ -3,13 +3,13 @@ import { setRequestError } from "./errorsSlice";
 import { setLoading } from "./loadingSlice";
 import { fetchAlbumsForCertainUserById } from "../../requests/requests";
 
-const initialState = {
+export const albumSliceInitialState = {
   albums: [],
 };
 
 const albumsSlice = createSlice({
   name: "albumsSlice",
-  initialState,
+  initialState: albumSliceInitialState,
   reducers: {
     setAlbums(state, action) {
       state.albums = [...action.payload];

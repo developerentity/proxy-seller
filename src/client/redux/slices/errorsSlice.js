@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { enqueueSnackbar } from "notistack";
 
-const initialState = {
+export const errorsSliceInitialState = {
   messages: [],
 };
 
 const slice = createSlice({
   name: "errorsSlice",
-  initialState,
+  initialState: errorsSliceInitialState,
   reducers: {
     setErrors(state, action) {
       state.messages = action.payload;

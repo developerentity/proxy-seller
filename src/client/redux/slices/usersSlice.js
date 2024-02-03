@@ -3,13 +3,13 @@ import { setRequestError } from "./errorsSlice";
 import { setLoading } from "./loadingSlice";
 import { fetchAllUsers } from "../../requests/requests";
 
-const initialState = {
+export const usersSliceInitialState = {
   users: [],
 };
 
 const usersSlice = createSlice({
   name: "usersSlice",
-  initialState,
+  initialState: usersSliceInitialState,
   reducers: {
     setUsers(state, action) {
       state.users = [...action.payload];

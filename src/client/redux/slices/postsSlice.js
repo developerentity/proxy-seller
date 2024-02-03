@@ -3,13 +3,13 @@ import { setRequestError } from "./errorsSlice";
 import { setLoading } from "./loadingSlice";
 import { fetchPostsForCertainUserById } from "../../requests/requests";
 
-const initialState = {
+export const postsSliceInitialState = {
   posts: [],
 };
 
 const postsSlice = createSlice({
   name: "postsSlice",
-  initialState,
+  initialState: postsSliceInitialState,
   reducers: {
     setPosts(state, action) {
       state.posts = [...action.payload];

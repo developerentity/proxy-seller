@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+export const loadingSliceInitialState = {
   appLoading: false,
 };
 
 const slice = createSlice({
   name: "loadingSlice",
-  initialState,
+  initialState: loadingSliceInitialState,
   reducers: {
     setLoading(state, action) {
       state.appLoading = action.payload;
