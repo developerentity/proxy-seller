@@ -6,21 +6,18 @@ import { StaticRouter } from "react-router-dom/server";
 import configureStore from "./client/redux/configureStore";
 import Routes from "./client/Routes";
 
-module.exports = function render(initialState, url) {
+module.exports = function render(preloadedState, url) {
   // Configure the store with the initial state provided
-  const store = configureStore(initialState);
+  const store = configureStore(preloadedState);
 
   // render the App store static markup ins content variable
   let content = renderToString(
-    <StaticRouter location={url}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <StaticRouter location={url} context={{}}>
         <Routes />
-      </Provider>
-    </StaticRouter>
+      </StaticRouter>
+    </Provider>
   );
 
-  // Get a copy of store data to create the same store on client side
-  const preloadedState = store.getState();
-
-  return { content, preloadedState };
+  return { content };
 };

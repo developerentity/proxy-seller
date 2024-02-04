@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import configureStore from "./client/redux/configureStore";
 import Routes from "./client/Routes";
 import { BrowserRouter } from "react-router-dom";
-import { StaticRouter } from "react-router-dom/server";
 
 // Read the state sent with markup
 const state = window.__STATE__;
@@ -22,10 +21,10 @@ const store = configureStore(state);
  */
 
 hydrate(
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter>
       <Routes />
-    </Provider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.querySelector("#app")
 );
