@@ -7,6 +7,7 @@ import { initialState } from "./src/client/redux/initialState";
 import { getUsers } from "./src/client/redux/slices/usersSlice";
 import { getAlbumsForCertainUserById } from "./src/client/redux/slices/albumsSlice";
 import { getPostForCertainUserById } from "./src/client/redux/slices/postsSlice";
+import NoMatch from "./src/client/components/NoMatch";
 
 const app = express();
 
@@ -19,47 +20,39 @@ app.disable("x-powered-by");
 // start the server
 app.listen(process.env.PORT || 3000);
 
-// server rendered home page
-app.get("/", async (req, res) => {
+const renderAndSend = async (req, res, additionalActions = []) => {
   try {
-    await store.dispatch(getUsers());
+    for (const action of additionalActions) {
+      await store.dispatch(action);
+    }
+    const preloadedState = store.getState();
+    const { content } = ssr(preloadedState, req.url);
+    const response = template("Server Rendered Page", preloadedState, content);
+    res.setHeader("Cache-Control", "assets, max-age=604800");
+    res.send(response);
   } catch (err) {
+    console.error(err);
     res.status(500).send("Internal Server Error");
   }
-  const preloadedState = store.getState();
+};
 
-  const { content } = ssr(preloadedState, req.url);
-  const response = template("Server Rendered Page", preloadedState, content);
-  res.setHeader("Cache-Control", "assets, max-age=604800");
-  res.send(response);
+app.get("/", (req, res) => {
+  renderAndSend(req, res, [getUsers()]);
 });
 
-app.get("/:userId/*", async (req, res) => {
+app.get("/:userId/albums", (req, res) => {
   const userId = req.params.userId;
-  const urlPath = req.params[0];
+  renderAndSend(req, res, [getUsers(), getAlbumsForCertainUserById(userId)]);
+});
 
-  try {
-    switch (urlPath) {
-      case "albums":
-        await store.dispatch(getUsers());
-        await store.dispatch(getAlbumsForCertainUserById(userId));
-        break;
+app.get("/:userId/posts", (req, res) => {
+  const userId = req.params.userId;
+  renderAndSend(req, res, [getUsers(), getPostForCertainUserById(userId)]);
+});
 
-      case "posts":
-        await store.dispatch(getUsers());
-        await store.dispatch(getPostForCertainUserById(userId));
-        break;
-
-      default:
-        break;
-    }
-  } catch (err) {
-    res.status(500).send("Internal Server Error");
-  }
+app.use(async (req, res) => {
   const preloadedState = store.getState();
-
-  const { content } = ssr(preloadedState, req.url);
-  const response = template("Server Rendered Page", preloadedState, content);
-  res.setHeader("Cache-Control", "assets, max-age=604800");
-  res.send(response);
+  const { content } = ssr(preloadedState, req.url, NoMatch);
+  const response = template("Page Not Found", preloadedState, content);
+  res.status(404).send(response);
 });
