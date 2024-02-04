@@ -2,12 +2,12 @@ import express from "express";
 import path from "path";
 import template from "./src/template";
 import ssr from "./src/server";
-import configureStore from "./src/client/redux/configureStore";
-import { initialState } from "./src/client/redux/initialState";
-import { getUsers } from "./src/client/redux/slices/usersSlice";
-import { getAlbumsForCertainUserById } from "./src/client/redux/slices/albumsSlice";
-import { getPostForCertainUserById } from "./src/client/redux/slices/postsSlice";
-import NoMatch from "./src/client/components/NoMatch";
+import configureStore from "./src/redux/configureStore";
+import { initialState } from "./src/redux/initialState";
+import { getUsers } from "./src/redux/slices/usersSlice";
+import { getAlbumsForCertainUserById } from "./src/redux/slices/albumsSlice";
+import { getPostForCertainUserById } from "./src/redux/slices/postsSlice";
+import NoMatch from "./src/components/NoMatch";
 
 const app = express();
 

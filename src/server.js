@@ -3,8 +3,8 @@ import { renderToString } from "react-dom/server";
 
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router-dom/server";
-import configureStore from "./client/redux/configureStore";
-import Routes from "./client/Routes";
+import configureStore from "./redux/configureStore";
+import Routes from "./Routes";
 
 module.exports = function render(preloadedState, url, Component = Routes) {
   // Configure the store with the initial state provided
