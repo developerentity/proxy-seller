@@ -26,8 +26,13 @@ const renderAndSend = async (req, res, additionalActions = []) => {
       await store.dispatch(action);
     }
     const preloadedState = store.getState();
-    const { content } = ssr(preloadedState, req.url);
-    const response = template("Server Rendered Page", preloadedState, content);
+    const { content, styles } = ssr(preloadedState, req.url);
+    const response = template(
+      "Server Rendered Page",
+      preloadedState,
+      content,
+      styles
+    );
     res.setHeader("Cache-Control", "public, max-age=604800");
     res.send(response);
   } catch (err) {
@@ -52,7 +57,7 @@ app.get("/:userId/posts", (req, res) => {
 
 app.use(async (req, res) => {
   const preloadedState = store.getState();
-  const { content } = ssr(preloadedState, req.url, NoMatch);
-  const response = template("Page Not Found", preloadedState, content);
+  const { content, styles } = ssr(preloadedState, req.url, NoMatch);
+  const response = template("Page Not Found", preloadedState, content, styles);
   res.status(404).send(response);
 });

@@ -1,21 +1,26 @@
 // html skeleton provider
-export default function template(title, initialState = {}, content = "") {
-  let scripts = ''; // Dynamically ship scripts based on render type
+export default function template(
+  title,
+  initialState = {},
+  content = "",
+  styles = ""
+) {
+  let scripts = ""; // Dynamically ship scripts based on render type
   if (content) {
     scripts = ` <script>
                    window.__STATE__ = ${JSON.stringify(initialState)}
                 </script>
                 <script src="public/client.js"></script>
-                `
+                `;
   } else {
-    scripts = ` <script src="public/bundle.js"> </script> `
+    scripts = ` <script src="public/bundle.js"> </script> `;
   }
   let page = `<!DOCTYPE html>
               <html lang="en">
               <head>
                 <meta charset="utf-8">
                 <title> ${title} </title>
-                <link rel="stylesheet" href="assets/style.css">
+                ${styles}
               </head>
               <body>
                 <div class="content">
