@@ -14,7 +14,7 @@ const app = express();
 const store = configureStore(initialState);
 
 // Serving static files
-app.use("/assets", express.static(path.resolve(__dirname, "assets")));
+app.use("/public", express.static(path.resolve(__dirname, "public")));
 // hide powered by express
 app.disable("x-powered-by");
 // start the server
@@ -28,7 +28,7 @@ const renderAndSend = async (req, res, additionalActions = []) => {
     const preloadedState = store.getState();
     const { content } = ssr(preloadedState, req.url);
     const response = template("Server Rendered Page", preloadedState, content);
-    res.setHeader("Cache-Control", "assets, max-age=604800");
+    res.setHeader("Cache-Control", "public, max-age=604800");
     res.send(response);
   } catch (err) {
     console.error(err);
