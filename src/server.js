@@ -4,7 +4,6 @@ import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router-dom/server";
 import configureStore from "./client/redux/configureStore";
-// import App from './components/app'
 import Routes from "./client/Routes";
 
 module.exports = function render(initialState, url) {

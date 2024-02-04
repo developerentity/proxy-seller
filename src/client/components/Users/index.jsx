@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { getUsers } from '../../redux/slices/usersSlice';
 import { Button, NoUsersFound, SearchInput, SortButton, UserItem } from './styles';
 import { Container } from '../../styles/Container';
@@ -18,8 +18,6 @@ const UsersComponent = () => {
     const { sortedItems, sortOrder, toggleSortOrder } = useSort(users);
     const { filteredItems, searchTerm, handleSearchChange } = useFilter(sortedItems);
 
-    const [count, setCount] = useState(0);
-
     useEffect(() => {
         !users.length && dispatch(getUsers())
     }, [dispatch, users]);
@@ -31,9 +29,6 @@ const UsersComponent = () => {
     return (
         <Container>
             <Header title='Users' />
-            <button onClick={() => setCount(count + 1)}>
-                You clicked me {count} times
-            </button>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
                 <SortButton onClick={toggleSortOrder}>
                     Sort By: {sortOrder ? sortOrder.toUpperCase() : "OFF"}
@@ -49,8 +44,8 @@ const UsersComponent = () => {
                 ? filteredItems.map(user => (
                     <UserItem key={user.id}>
                         <h2>{user.username}</h2>
-                        <Button to={`/users/${user.id}/albums`}>Albums</Button>
-                        <Button to={`/users/${user.id}/posts`}>Posts</Button>
+                        <Button to={`/${user.id}/albums`}>Albums</Button>
+                        <Button to={`/${user.id}/posts`}>Posts</Button>
                     </UserItem>
                 ))
                 : <NoUsersFound>No users found</NoUsersFound>}
