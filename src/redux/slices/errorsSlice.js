@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { enqueueSnackbar } from "notistack";
 
 export const errorsSliceInitialState = {
   messages: [],
@@ -21,9 +20,9 @@ export const setRequestError = (err) => {
   return (dispatch, getState) => {
     if (err.data) {
       const message = Object.values(err.data).join("\n");
-      enqueueSnackbar(message, { variant: "error" });
+      console.error(message)
     } else {
-      enqueueSnackbar("Something went wrong", { variant: "error" });
+      console.error("Something went wrong")
     }
     const { errorsSlice } = getState();
     dispatch(slice.actions.setErrors([...errorsSlice.messages, err]));
