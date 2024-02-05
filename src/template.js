@@ -10,10 +10,10 @@ export default function template(
     scripts = ` <script>
                    window.__STATE__ = ${JSON.stringify(initialState)}
                 </script>
-                <script src="public/client.js"></script>
+                <script src="build/client.js"></script>
                 `;
   } else {
-    scripts = ` <script src="public/bundle.js"> </script> `;
+    scripts = ` <script src="build/bundle.js"> </script> `;
   }
   let page = `<!DOCTYPE html>
               <html lang="en">

@@ -14,7 +14,7 @@ const app = express();
 const store = configureStore(initialState);
 
 // Serving static files
-app.use("/public", express.static(path.resolve(__dirname, "public")));
+app.use("/build", express.static(path.resolve(__dirname, "build")));
 // hide powered by express
 app.disable("x-powered-by");
 // start the server
@@ -33,7 +33,7 @@ const renderAndSend = async (req, res, additionalActions = []) => {
       content,
       styles
     );
-    res.setHeader("Cache-Control", "public, max-age=604800");
+    res.setHeader("Cache-Control", "build, max-age=604800");
     res.send(response);
   } catch (err) {
     console.error(err);
