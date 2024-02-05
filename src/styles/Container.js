@@ -5,11 +5,6 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 20px;
   overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
 
   @media (max-width: 768px) {
     padding: 15px;

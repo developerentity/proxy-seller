@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-export const AlbumsContainer = styled.div``;
-
 export const AlbumItem = styled.div`
   margin-bottom: 15px;
   padding: 10px;

@@ -45,7 +45,7 @@ const UserPostsComponent = () => {
                         <p>{addPeriodAtEnd(capitalizeFirstLetter(post.body))}</p>
                     </PostItem>
                 ))
-                : <div />}
+                : <div></div>}
         </Container>
     )
 }

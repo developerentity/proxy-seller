@@ -7,9 +7,9 @@ const Header = ({ title, shouldBackButtonBeShown }) => {
         <HeaderContainer>
             {shouldBackButtonBeShown ? (
                 <BackButton to="/">Back</BackButton>
-            ) : <div />}
+            ) : <div></div>}
             <Title>{title}</Title>
-            <div />
+            <div></div>
         </HeaderContainer>
     );
 };

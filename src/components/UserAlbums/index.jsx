@@ -44,7 +44,7 @@ const UserAlbumsComponent = () => {
                         {addPeriodAtEnd(capitalizeFirstLetter(album.title))}
                     </AlbumItem>
                 ))
-                : <div />}
+                : <div></div>}
         </Container>
     )
 }
