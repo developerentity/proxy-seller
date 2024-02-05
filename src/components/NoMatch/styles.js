@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const NotFoundContainer = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ export const Message = styled.h1`
   color: #333;
 `;
 
-export const BackButton = styled.button`
+export const BackButton = styled(Link)`
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 1rem;
