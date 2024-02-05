@@ -9,7 +9,7 @@ const NoMatch = () => {
     return (
         <NotFoundContainer>
             <Message>Page not found - 404</Message>
-            <BackButton onClick={() => navigate(-1)}>Go back</BackButton>
+            <BackButton onClick={() => navigate('/')}>Go back</BackButton>
         </NotFoundContainer>
     );
 }

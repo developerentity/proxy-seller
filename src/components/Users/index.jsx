@@ -45,8 +45,8 @@ const UsersComponent = () => {
                 ? filteredItems.map(user => (
                     <UserItem key={user.id}>
                         <h2>{user.username}</h2>
-                        <Button to={`/users/${user.id}/albums`}>Albums</Button>
-                        <Button to={`/users/${user.id}/posts`}>Posts</Button>
+                        <Button to={`/${user.id}/albums`}>Albums</Button>
+                        <Button to={`/${user.id}/posts`}>Posts</Button>
                     </UserItem>
                 ))
                 : <NoUsersFound>No users found</NoUsersFound>}

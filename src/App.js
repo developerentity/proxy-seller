@@ -16,10 +16,9 @@ function App() {
         <SnackbarProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Navigate replace to="/users" />} />
-              <Route path="users" element={<UsersComponent />} />
-              <Route path="users/:userId/albums" element={<UserAlbumsComponent />} />
-              <Route path="users/:userId/posts" element={<UserPostsComponent />} />
+              <Route path="/" element={<UsersComponent />} />
+              <Route path="/:userId/albums" element={<UserAlbumsComponent />} />
+              <Route path="/:userId/posts" element={<UserPostsComponent />} />
               <Route path="*" element={<NoMatch />} />
             </Routes>
           </BrowserRouter>
