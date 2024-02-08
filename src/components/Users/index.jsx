@@ -46,8 +46,7 @@ const UsersComponent = () => {
                         <h2>{user.username}</h2>
                         <Button to={`/${user.id}/albums`}>Albums</Button>
                         <Button to={`/${user.id}/posts`}>Posts</Button>
-                    </UserItem>
-                ))
+                    </UserItem>))
                 : <NoUsersFound>No users found</NoUsersFound>}
         </Container>
     )

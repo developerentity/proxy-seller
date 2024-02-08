@@ -42,8 +42,7 @@ const UserAlbumsComponent = () => {
                 ? albums.map(album => (
                     <AlbumItem key={album.id}>
                         {addPeriodAtEnd(capitalizeFirstLetter(album.title))}
-                    </AlbumItem>
-                ))
+                    </AlbumItem>))
                 : <div></div>}
         </Container>
     )
